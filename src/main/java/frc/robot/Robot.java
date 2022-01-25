@@ -5,8 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +27,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    CameraServer.startAutomaticCapture(); 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -43,7 +46,15 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    RobotContainer.Break_Beam_1 = RobotContainer.botBreakBeam.get();
+    RobotContainer.Break_Beam_2 = RobotContainer.botMidBreakBeam.get();
+    RobotContainer.Break_Beam_3 = RobotContainer.topMidBreakBeam.get();
+    RobotContainer.Break_Beam_4 = RobotContainer.topBreakBeam.get();
     CommandScheduler.getInstance().run();
+    SmartDashboard.putBoolean("Break Beam Bottom", RobotContainer.Break_Beam_1);
+    SmartDashboard.putBoolean("Break Beam Mid Bottom", RobotContainer.Break_Beam_2);
+    SmartDashboard.putBoolean("Break Beam Mid Top", RobotContainer.Break_Beam_3);
+    SmartDashboard.putBoolean("Break Beam Top", RobotContainer.Break_Beam_4);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

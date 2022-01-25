@@ -15,7 +15,7 @@ public class Climber extends SubsystemBase {
   TalonFX climbMotor;
   /** Creates a new Climber. */
   public Climber() {
-    climbMotor = new TalonFX(Constants.climbMotor);
+    climbMotor = new TalonFX(Constants.Climb_Motor);
     climbMotor.setInverted(false);
   }
 
